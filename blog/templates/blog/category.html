@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    {{ title }} :: {{ block.super }}
+{% endblock %}
+
+{% block content %}
+    <section class="bg-text-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="bg-text">
+                        <h3>{{ title }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="blog-post-area">
+        <div class="container">
+            <div class="row">
+                <div class="blog-post-area-style">
+                    {% for post in posts %}
+                        <div class="col-md-3">
+                            <div class="single-post">
+                                {% if post.photo %}
+                                    <img src="{{ post.photo.url }}" alt="{{ post.title }}">
+                                {% else %}
+                                    <img src="https://i.picsum.photos/id/1060/300/201.jpg?blur=2&hmac=0zJLs1ar00sBbW5Ahd_4zA6pgZqCVavwuHToO6VtcYY" alt="{{ post.title }}">
+                                {% endif %}
+                                <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+                                <h4><span>Posted By: <span class="author-name">{{ post.author }}</span></span>
+                                </h4>
+                                <p>{{ post.content|truncatewords:20|safe }}</p>
+                                <h4><span>{{ post.created_at|date:'Y-m-d' }}</span></h4>
+                            </div>
+                        </div>
+
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {% include 'inc/_pagination.html' %}
+    </section>
+{% endblock %}
+
+

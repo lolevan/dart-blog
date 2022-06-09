@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from django.views.generic import ListView, DeleteView
 from django.db.models import F
 
@@ -8,7 +7,7 @@ from blog.models import *
 class PostsByCategory(ListView):
     template_name = 'blog/category.html'
     context_object_name = 'posts'
-    paginate_by = 2
+    paginate_by = 4
     allow_empty = False
     # return render(request, 'blog/category.html')
 
@@ -25,7 +24,7 @@ class Home(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'posts'
-    paginate_by = 2
+    paginate_by = 4
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(Home, self).get_context_data(**kwargs)
@@ -39,7 +38,7 @@ class Home(ListView):
 class PostsByTag(ListView):
     template_name = 'blog/category.html'
     context_object_name = 'posts'
-    paginate_by = 2
+    paginate_by = 4
     allow_empty = False
 
     def get_context_data(self, *, object_list=None, **kwargs):
@@ -71,7 +70,7 @@ class GetPost(DeleteView):
 class Search(ListView):
     template_name = 'blog/search.html'
     context_object_name = 'posts'
-    paginate_by = 1
+    paginate_by = 4
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(Search, self).get_context_data(**kwargs)

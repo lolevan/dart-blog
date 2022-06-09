@@ -37,7 +37,7 @@ class Tag(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255, verbose_name='Название')
     slug = models.SlugField(max_length=255, verbose_name='Url', unique=True)
-    author = models.CharField(max_length=100, verbose_name='Афтор')
+    author = models.CharField(max_length=100, verbose_name='Автор')
     content = models.TextField(blank=True, verbose_name='Контент')
     created_at = models.DateTimeField(auto_now_add=True, verbose_name='Опубликованно')
     photo = models.ImageField(upload_to='photo/%Y/%m/%d/', verbose_name='Фото', blank=True)

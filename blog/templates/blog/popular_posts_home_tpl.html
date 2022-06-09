@@ -1,0 +1,37 @@
+<div class="col-md-12">
+    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            {% for post in posts %}
+                <div class="carousel-item">
+                    <div class="big-image">
+                        {% if post.photo %}
+                            <img src="{{ post.photo.url }}" alt="{{ post.title }}">
+                        {% else %}
+                            <img src="https://i.picsum.photos/id/1060/300/201.jpg?blur=2&hmac=0zJLs1ar00sBbW5Ahd_4zA6pgZqCVavwuHToO6VtcYY" alt="{{ post.title }}">
+                        {% endif %}
+                    </div>
+                    <div class="big-text">
+                        <h3><a href="{{ post.get_absolute_url }}">{{ post.title }}</a></h3>
+
+                        <p>{{ post.content|truncatewords:60 }}</p>
+                        <h4><span class="date">{{ post.created_at|date:" d.m.Y" }}</span><span class="author">Posted By: <span class="author-name">{{ post.author}}</span></span>
+                        </h4>
+                    </div>
+                </div>
+
+            {% endfor %}
+        <div class="carousel-item active">
+            <svg class="bd-placeholder-img bd-placeholder-img-lg d-block w-100" width="800" height="400" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: First slide" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#ffff"></rect><text x="50%" y="50%" fill="#555" dy=".3em">Popular post</text></svg>
+        </div>
+
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+</div>
